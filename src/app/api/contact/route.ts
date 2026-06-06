@@ -26,8 +26,8 @@ export async function POST(req: NextRequest) {
 
     // Email à Alex
     await resend.emails.send({
-      from: "L'As de la Vente <contact@asdelavente.fr>",
-      to: "alexandre@asdelavente.fr",
+      from: "L'As de la Vente <alex@aumentia.ai>",
+      to: "alex@aumentia.ai",
       replyTo: email,
       subject: `[asdelavente.fr] ${subjectLabel} — ${name}`,
       html: `
@@ -73,7 +73,7 @@ export async function POST(req: NextRequest) {
 
     // Email de confirmation à l'expéditeur
     await resend.emails.send({
-      from: "Alexandre Gagliano <contact@asdelavente.fr>",
+      from: "Alexandre Gagliano <alex@aumentia.ai>",
       to: email,
       subject: "Votre message a bien été reçu — L'As de la Vente",
       html: `
