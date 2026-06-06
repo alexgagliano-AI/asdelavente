@@ -8,17 +8,44 @@ const offerings = [
   { icon: "🎤", title: "Conférence & Speaking", desc: "Alex intervient dans vos événements, salons, conventions d'entreprise." },
 ];
 
-export default function ContactPage() {
-  const [sent, setSent] = useState(false);
-  const [form, setForm] = useState({ name: "", email: "", sujet: "", message: "" });
+type Status = "idle" | "loading" | "success" | "error";
 
-  function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) {
+export default function ContactPage() {
+  const [status, setStatus] = useState<Status>("idle");
+  const [errorMsg, setErrorMsg] = useState("");
+  const [form, setForm] = useState({
+    name: "", email: "", sujet: "", message: "",
+  });
+
+  function handleChange(
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) {
     setForm({ ...form, [e.target.name]: e.target.value });
   }
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    setSent(true);
+    setStatus("loading");
+    setErrorMsg("");
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+
+      if (res.ok) {
+        setStatus("success");
+      } else {
+        const data = await res.json();
+        setErrorMsg(data.error || "Une erreur est survenue.");
+        setStatus("error");
+      }
+    } catch {
+      setErrorMsg("Erreur réseau. Vérifiez votre connexion.");
+      setStatus("error");
+    }
   }
 
   return (
@@ -60,15 +87,19 @@ export default function ContactPage() {
             <div className="divider divider-red mx-auto mt-4" />
           </div>
 
-          {sent ? (
+          {status === "success" ? (
             <div className="text-center py-16">
-              <div className="text-6xl mb-4">✅</div>
+              <div className="text-7xl mb-6">✅</div>
               <h3 className="text-2xl font-black text-[#1a1a2e] mb-3">
                 Message envoyé — merci !
               </h3>
-              <p className="text-gray-500">
-                Je vous réponds sous 24 heures. Keep doing it.
+              <p className="text-gray-500 mb-2">
+                Je vous réponds sous 24 heures.
               </p>
+              <p className="text-gray-400 text-sm">
+                Un email de confirmation vient de vous être envoyé.
+              </p>
+              <p className="font-black text-[#c0392b] text-lg mt-6">Keep doing it.</p>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-5">
@@ -83,7 +114,8 @@ export default function ContactPage() {
                     required
                     value={form.name}
                     onChange={handleChange}
-                    className="w-full border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:border-[#c0392b] transition-colors"
+                    disabled={status === "loading"}
+                    className="w-full border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:border-[#c0392b] transition-colors disabled:opacity-50"
                     placeholder="Alexandre Gagliano"
                   />
                 </div>
@@ -97,7 +129,8 @@ export default function ContactPage() {
                     required
                     value={form.email}
                     onChange={handleChange}
-                    className="w-full border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:border-[#c0392b] transition-colors"
+                    disabled={status === "loading"}
+                    className="w-full border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:border-[#c0392b] transition-colors disabled:opacity-50"
                     placeholder="vous@email.com"
                   />
                 </div>
@@ -112,7 +145,8 @@ export default function ContactPage() {
                   required
                   value={form.sujet}
                   onChange={handleChange}
-                  className="w-full border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:border-[#c0392b] transition-colors bg-white"
+                  disabled={status === "loading"}
+                  className="w-full border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:border-[#c0392b] transition-colors bg-white disabled:opacity-50"
                 >
                   <option value="">Choisissez…</option>
                   <option value="livre">Commander un livre</option>
@@ -132,17 +166,39 @@ export default function ContactPage() {
                   required
                   value={form.message}
                   onChange={handleChange}
+                  disabled={status === "loading"}
                   rows={6}
-                  className="w-full border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:border-[#c0392b] transition-colors resize-none"
+                  className="w-full border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:border-[#c0392b] transition-colors resize-none disabled:opacity-50"
                   placeholder="Décrivez votre situation, vos objectifs, ce dont vous avez besoin…"
                 />
               </div>
 
-              <button type="submit" className="btn-red w-full text-center text-lg">
-                Envoyer mon message →
+              {status === "error" && (
+                <div className="bg-red-50 border border-red-200 text-red-700 rounded-xl px-4 py-3 text-sm">
+                  ⚠️ {errorMsg}
+                </div>
+              )}
+
+              <button
+                type="submit"
+                disabled={status === "loading"}
+                className="btn-red w-full text-center text-lg disabled:opacity-60 disabled:cursor-not-allowed disabled:transform-none"
+              >
+                {status === "loading" ? (
+                  <span className="flex items-center justify-center gap-2">
+                    <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24" fill="none">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"/>
+                    </svg>
+                    Envoi en cours…
+                  </span>
+                ) : (
+                  "Envoyer mon message →"
+                )}
               </button>
+
               <p className="text-xs text-gray-400 text-center">
-                Réponse sous 24h. Vos données restent confidentielles.
+                Réponse sous 24h · Vos données restent confidentielles
               </p>
             </form>
           )}
@@ -153,9 +209,7 @@ export default function ContactPage() {
       <section className="py-16 bg-[#1a1a2e] text-center">
         <div className="max-w-xl mx-auto px-4">
           <p className="text-white/60 text-sm mb-2">La devise d&apos;Alex</p>
-          <p className="text-3xl font-black text-white">
-            Keep doing it.
-          </p>
+          <p className="text-3xl font-black text-white">Keep doing it.</p>
           <p className="text-white/40 text-sm mt-3">— Alexandre Gagliano</p>
         </div>
       </section>
