@@ -1,0 +1,66 @@
+@import "tailwindcss";
+
+:root {
+  --navy: #1a1a2e;
+  --red: #c0392b;
+  --red-light: #e74c3c;
+  --gold: #f39c12;
+  --green: #27ae60;
+}
+
+html { scroll-behavior: smooth; }
+body { font-family: 'Helvetica Neue', Arial, sans-serif; }
+
+.gradient-hero    { background: linear-gradient(135deg, #1a1a2e 0%, #2c3e50 60%, #c0392b 100%); }
+.gradient-fitness { background: linear-gradient(135deg, #0d2818 0%, #1a3a2e 60%, #1a6b3a 100%); }
+.gradient-navy    { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); }
+
+.btn-red {
+  background: linear-gradient(135deg, #c0392b, #e74c3c);
+  color: white; padding: 0.9rem 2.2rem; border-radius: 50px;
+  font-weight: 700; font-size: 1rem; transition: all 0.2s;
+  display: inline-block; text-decoration: none;
+  box-shadow: 0 4px 15px rgba(192,57,43,0.35);
+}
+.btn-red:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(192,57,43,0.5); }
+
+.btn-green {
+  background: linear-gradient(135deg, #27ae60, #2ecc71);
+  color: white; padding: 0.9rem 2.2rem; border-radius: 50px;
+  font-weight: 700; font-size: 1rem; transition: all 0.2s;
+  display: inline-block; text-decoration: none;
+  box-shadow: 0 4px 15px rgba(39,174,96,0.35);
+}
+.btn-green:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(39,174,96,0.5); }
+
+.btn-outline-white {
+  border: 2px solid rgba(255,255,255,0.8); color: white;
+  padding: 0.9rem 2.2rem; border-radius: 50px; font-weight: 700;
+  font-size: 1rem; transition: all 0.2s; display: inline-block;
+  text-decoration: none; background: transparent;
+}
+.btn-outline-white:hover { background: white; color: #1a1a2e; }
+
+.btn-navy {
+  background: #1a1a2e; color: white;
+  padding: 0.9rem 2.2rem; border-radius: 50px;
+  font-weight: 700; font-size: 1rem; transition: all 0.2s;
+  display: inline-block; text-decoration: none;
+}
+.btn-navy:hover { background: #2c3e50; transform: translateY(-2px); }
+
+.card {
+  background: white; border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08); padding: 2rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.14); }
+
+.section-label {
+  font-size: 0.8rem; font-weight: 700; letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+.divider { width: 60px; height: 4px; border-radius: 2px; }
+.divider-red   { background: #c0392b; }
+.divider-green { background: #27ae60; }
+.divider-white { background: white; }
