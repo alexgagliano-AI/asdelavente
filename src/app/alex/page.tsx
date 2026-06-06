@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 const timeline = [
   { year: "1982", event: "Naissance à Bruxelles", desc: "D'un père sicilien et d'une mère belge. Appartement de 70m² à 4. La différence sociale se ressent dès le départ." },
@@ -35,8 +36,22 @@ export default function AlexPage() {
               </div>
             </div>
 
-            {/* Stats */}
-            <div className="grid grid-cols-2 gap-4">
+            {/* Photo Alex */}
+            <div className="flex justify-center md:justify-end">
+              <div className="relative w-64 h-72 rounded-2xl overflow-hidden shadow-2xl">
+                <Image
+                  src="/alex.jpg"
+                  alt="Alexandre Gagliano"
+                  fill
+                  className="object-cover object-top"
+                  priority
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Stats row */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12">
               {[
                 { val: "20+", label: "ans de vente", sub: "Télécoms, Tech, Coaching" },
                 { val: "2", label: "livres publiés", sub: "Original + Fitness Edition" },
@@ -52,7 +67,6 @@ export default function AlexPage() {
                   <div className="text-white/40 text-xs mt-1">{s.sub}</div>
                 </div>
               ))}
-            </div>
           </div>
         </div>
       </section>

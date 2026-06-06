@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 const chapters = [
   { num: "01", title: "Le Marketing — La Clé du Succès", desc: "Liste des 25 top relations, réseaux sociaux, marketing gratuit et payant, spécialisation et différenciation." },
@@ -17,11 +18,12 @@ export default function LivrePage() {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
               <span className="section-label text-[#c0392b] block mb-4 tracking-widest">
-                Version Originale
+                Version Originale — Disponible sur Amazon
               </span>
-              <h1 className="text-5xl md:text-6xl font-black text-white leading-none mb-6">
-                L&apos;<span className="text-[#c0392b]">As</span>
-                <br />de la Vente
+              <h1 className="text-4xl md:text-5xl font-black text-white leading-tight mb-6">
+                L&apos;<span className="text-[#c0392b]">As</span> de la Vente
+                <br />
+                <span className="text-[#c0392b]">et du Marketing</span>
               </h1>
               <p className="text-white/80 text-lg leading-relaxed mb-6 max-w-lg">
                 Le guide indispensable pour transformer votre vie entrepreneuriale et commerciale.
@@ -50,23 +52,28 @@ export default function LivrePage() {
               </div>
             </div>
 
-            {/* Book visual */}
+            {/* Book visual — vraie couverture */}
             <div className="flex justify-center">
-              <div className="w-52 group">
-                <div className="rounded-2xl overflow-hidden shadow-2xl group-hover:-translate-y-4 group-hover:rotate-1 transition-all duration-500 bg-gradient-to-b from-[#1a1a2e] via-[#2c1a1a] to-[#c0392b]">
-                  <div className="p-8 flex flex-col h-80 justify-between">
-                    <div>
-                      <div className="w-10 h-1 bg-white/40 rounded mb-6" />
-                      <p className="text-white/50 text-xs uppercase tracking-widest mb-3">Alexandre Gagliano</p>
-                      <h2 className="text-white font-black text-2xl leading-tight">
-                        L&apos;As<br />de la<br />Vente
-                      </h2>
-                    </div>
-                    <div>
-                      <div className="w-full h-px bg-white/20 mb-3" />
-                      <p className="text-white/40 text-xs">Le guide entrepreneur</p>
-                    </div>
-                  </div>
+              <div className="group w-56">
+                <div className="rounded-2xl overflow-hidden shadow-2xl group-hover:-translate-y-4 group-hover:rotate-1 transition-all duration-500">
+                  <Image
+                    src="/livre.png"
+                    alt="L'As de la Vente et du Marketing — Alexandre Gagliano"
+                    width={224}
+                    height={320}
+                    className="w-full object-cover"
+                    priority
+                  />
+                </div>
+                <div className="mt-4 flex justify-center">
+                  <Link
+                    href="https://www.amazon.fr"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 bg-[#f39c12] text-[#1a1a2e] font-black px-5 py-2.5 rounded-full text-sm hover:bg-[#e67e22] transition-colors shadow-lg"
+                  >
+                    <span>🛒</span> Disponible sur Amazon
+                  </Link>
                 </div>
               </div>
             </div>

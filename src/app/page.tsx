@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 const testimonials = [
   {
@@ -41,8 +42,7 @@ export default function HomePage() {
               </span>
               <h1 className="text-5xl md:text-7xl font-black text-white leading-none mb-6">
                 L&apos;<span className="text-[#c0392b]">As</span>
-                <br />
-                de la
+                <br />de la
                 <br />
                 <span className="text-[#c0392b]">Vente</span>
               </h1>
@@ -51,12 +51,8 @@ export default function HomePage() {
                 qui tourne <strong className="text-white">sans vous.</strong>
               </p>
               <div className="flex flex-wrap gap-4 mb-12">
-                <Link href="/livre" className="btn-red text-base">
-                  Le Livre Original
-                </Link>
-                <Link href="/fitness" className="btn-outline-white text-base">
-                  Fitness Edition →
-                </Link>
+                <Link href="/livre" className="btn-red text-base">Le Livre Original</Link>
+                <Link href="/fitness" className="btn-outline-white text-base">Fitness Edition →</Link>
               </div>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
                 {stats.map((s) => (
@@ -70,27 +66,24 @@ export default function HomePage() {
 
             {/* Book covers */}
             <div className="flex gap-6 justify-center items-end">
+              {/* Livre original — vraie couverture */}
               <Link href="/livre" className="group w-44 flex-shrink-0">
-                <div className="rounded-2xl overflow-hidden shadow-2xl group-hover:-translate-y-4 group-hover:-rotate-2 transition-all duration-300 bg-gradient-to-b from-[#1a1a2e] via-[#2c1a1a] to-[#c0392b]">
-                  <div className="p-5 flex flex-col h-64 justify-between">
-                    <div>
-                      <div className="w-8 h-1 bg-white/40 rounded mb-4" />
-                      <p className="text-white/50 text-[10px] uppercase tracking-widest mb-2">Alexandre Gagliano</p>
-                      <h3 className="text-white font-black text-lg leading-tight">
-                        L&apos;As de la Vente
-                      </h3>
-                    </div>
-                    <div>
-                      <div className="w-full h-px bg-white/20 mb-2" />
-                      <p className="text-white/40 text-[10px]">Version Originale</p>
-                    </div>
-                  </div>
+                <div className="rounded-2xl overflow-hidden shadow-2xl group-hover:-translate-y-4 group-hover:-rotate-2 transition-all duration-300">
+                  <Image
+                    src="/livre.png"
+                    alt="L'As de la Vente et du Marketing — Alexandre Gagliano"
+                    width={176}
+                    height={264}
+                    className="w-full object-cover"
+                    priority
+                  />
                 </div>
                 <p className="text-white/60 text-xs text-center mt-2 group-hover:text-white transition-colors">
-                  Version Originale
+                  Version Originale — dispo sur Amazon
                 </p>
               </Link>
 
+              {/* Fitness Edition — cover CSS */}
               <Link href="/fitness" className="group w-44 flex-shrink-0">
                 <div className="rounded-2xl overflow-hidden shadow-2xl group-hover:-translate-y-4 group-hover:rotate-2 transition-all duration-300 bg-gradient-to-b from-[#0d2818] via-[#0d3a1e] to-[#1a6b3a]">
                   <div className="p-5 flex flex-col h-72 justify-between">
@@ -124,12 +117,8 @@ export default function HomePage() {
       <section className="py-24 bg-[#f8f9fa]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-16">
-            <span className="section-label text-[#c0392b] tracking-widest">
-              Deux livres, une mission
-            </span>
-            <h2 className="section-title text-[#1a1a2e] mt-3">
-              Choisissez votre chemin
-            </h2>
+            <span className="section-label text-[#c0392b] tracking-widest">Deux livres, une mission</span>
+            <h2 className="section-title text-[#1a1a2e] mt-3">Choisissez votre chemin</h2>
             <div className="divider divider-red mx-auto mt-4" />
           </div>
 
@@ -137,18 +126,16 @@ export default function HomePage() {
             {/* Livre 1 */}
             <div className="card border-t-4 border-[#c0392b]">
               <div className="flex items-center gap-3 mb-5">
-                <div className="w-10 h-10 rounded-full bg-[#c0392b] flex items-center justify-center text-white font-black text-lg">
-                  1
-                </div>
+                <div className="w-10 h-10 rounded-full bg-[#c0392b] flex items-center justify-center text-white font-black text-lg">1</div>
                 <div>
-                  <p className="text-[10px] text-gray-400 uppercase tracking-widest">Version Originale</p>
-                  <h3 className="font-black text-[#1a1a2e] text-xl">L&apos;As de la Vente</h3>
+                  <p className="text-[10px] text-gray-400 uppercase tracking-widest">Version Originale — Sur Amazon</p>
+                  <h3 className="font-black text-[#1a1a2e] text-xl">L&apos;As de la Vente et du Marketing</h3>
                 </div>
               </div>
               <p className="text-gray-600 leading-relaxed mb-6">
                 Le guide de référence pour tout entrepreneur, commercial et chef d&apos;entreprise
-                qui veut vendre mieux, bâtir un pipeline solide et développer une stratégie
-                commerciale gagnante. Marketing, vente, closing, expérience client — tout y est.
+                qui veut maîtriser l&apos;art et la science de la vente. Marketing, vente, closing,
+                expérience client — tout y est.
               </p>
               <ul className="space-y-3 mb-8">
                 {[
@@ -159,36 +146,29 @@ export default function HomePage() {
                   "L'expérience client (CX)",
                 ].map((item) => (
                   <li key={item} className="flex items-center gap-2 text-sm text-gray-700">
-                    <span className="text-[#c0392b] font-bold text-base">✓</span>
-                    {item}
+                    <span className="text-[#c0392b] font-bold text-base">✓</span>{item}
                   </li>
                 ))}
               </ul>
-              <Link href="/livre" className="btn-red block text-center">
-                Découvrir ce livre →
-              </Link>
+              <Link href="/livre" className="btn-red block text-center">Découvrir ce livre →</Link>
             </div>
 
             {/* Livre 2 */}
             <div className="card border-t-4 border-[#27ae60] relative">
               <div className="absolute -top-3 right-4">
-                <span className="bg-[#27ae60] text-white text-xs font-black px-3 py-1 rounded-full">
-                  NOUVEAU
-                </span>
+                <span className="bg-[#27ae60] text-white text-xs font-black px-3 py-1 rounded-full">NOUVEAU</span>
               </div>
               <div className="flex items-center gap-3 mb-5">
-                <div className="w-10 h-10 rounded-full bg-[#27ae60] flex items-center justify-center text-white font-black text-lg">
-                  2
-                </div>
+                <div className="w-10 h-10 rounded-full bg-[#27ae60] flex items-center justify-center text-white font-black text-lg">2</div>
                 <div>
-                  <p className="text-[10px] text-gray-400 uppercase tracking-widest">Fitness Edition</p>
+                  <p className="text-[10px] text-gray-400 uppercase tracking-widest">Fitness Edition — À paraître</p>
                   <h3 className="font-black text-[#1a1a2e] text-xl">L&apos;As de la Vente</h3>
                 </div>
               </div>
               <p className="text-gray-600 leading-relaxed mb-6">
                 Spécialement conçu pour les Personal Trainers et coachs fitness qui veulent
                 passer de freelance à founder. Scaling Up, Dan Martell, Maxwell Leadership
-                et méthode Toyota — adaptés à votre réalité quotidienne.
+                et méthode Toyota — adaptés à votre réalité.
               </p>
               <ul className="space-y-3 mb-8">
                 {[
@@ -199,14 +179,11 @@ export default function HomePage() {
                   "3 modèles de scalabilité PT",
                 ].map((item) => (
                   <li key={item} className="flex items-center gap-2 text-sm text-gray-700">
-                    <span className="text-[#27ae60] font-bold text-base">✓</span>
-                    {item}
+                    <span className="text-[#27ae60] font-bold text-base">✓</span>{item}
                   </li>
                 ))}
               </ul>
-              <Link href="/fitness" className="btn-green block text-center">
-                Découvrir ce livre →
-              </Link>
+              <Link href="/fitness" className="btn-green block text-center">Découvrir ce livre →</Link>
             </div>
           </div>
         </div>
@@ -220,7 +197,7 @@ export default function HomePage() {
               <span className="section-label text-[#c0392b] block mb-4 tracking-widest">L&apos;auteur</span>
               <h2 className="text-4xl md:text-5xl font-black text-white leading-tight mb-6">
                 Je ne suis pas{" "}
-                <span className="text-white/50">un coach.</span>
+                <span className="text-white/40">un coach.</span>
                 <br />
                 Je suis{" "}
                 <span className="text-[#c0392b]">LE coach.</span>
@@ -235,29 +212,31 @@ export default function HomePage() {
                 Après 20 ans de vente dans les télécoms et la tech (Orange, SAP), il est devenu
                 le coach des entrepreneurs qui veulent scaler — pas juste survivre.
               </p>
-              <Link href="/alex" className="btn-outline-white">
-                L&apos;histoire complète d&apos;Alex →
-              </Link>
+              <Link href="/alex" className="btn-outline-white">L&apos;histoire complète d&apos;Alex →</Link>
             </div>
 
-            <div className="grid grid-cols-1 gap-4">
-              {[
-                { icon: "🏆", title: "20+ ans de vente", desc: "Télécoms, tech, entrepreneuriat — dans le vrai monde, pas dans les livres." },
-                { icon: "💼", title: "Entrepreneur résilient", desc: "Une faillite, deux renaissances. La vraie école du business." },
-                { icon: "🚀", title: "Coach scalabilité", desc: "Scaling Up, Dan Martell, Maxwell — adapté à votre secteur." },
-                { icon: "📚", title: "Auteur & Speaker", desc: "Deux livres publiés. Des conférences. Un message : vendez mieux." },
-              ].map((item) => (
-                <div
-                  key={item.title}
-                  className="flex items-start gap-4 bg-white/5 rounded-xl p-4 border border-white/10 hover:bg-white/10 transition-colors"
-                >
-                  <span className="text-2xl flex-shrink-0">{item.icon}</span>
-                  <div>
-                    <h4 className="font-bold text-white">{item.title}</h4>
-                    <p className="text-white/55 text-sm mt-1">{item.desc}</p>
-                  </div>
+            {/* Photo Alex */}
+            <div className="flex justify-center">
+              <div className="relative">
+                <div className="w-72 h-80 rounded-2xl overflow-hidden shadow-2xl">
+                  <Image
+                    src="/alex.jpg"
+                    alt="Alexandre Gagliano — L'As de la Vente"
+                    width={288}
+                    height={320}
+                    className="w-full h-full object-cover object-top"
+                  />
                 </div>
-              ))}
+                {/* Badge flottant */}
+                <div className="absolute -bottom-4 -left-4 bg-[#c0392b] text-white rounded-xl px-4 py-3 shadow-lg">
+                  <p className="font-black text-lg">20+</p>
+                  <p className="text-xs text-white/80">ans de vente</p>
+                </div>
+                <div className="absolute -top-4 -right-4 bg-white text-[#1a1a2e] rounded-xl px-4 py-3 shadow-lg">
+                  <p className="font-black text-lg">x3</p>
+                  <p className="text-xs text-gray-500">revenu multiplié</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -271,7 +250,6 @@ export default function HomePage() {
             <h2 className="section-title text-[#1a1a2e] mt-3">Résultats réels</h2>
             <div className="divider divider-red mx-auto mt-4" />
           </div>
-
           <div className="grid md:grid-cols-3 gap-6">
             {testimonials.map((t) => (
               <div key={t.name} className="card">
@@ -280,9 +258,7 @@ export default function HomePage() {
                     <span key={i} className="text-[#f39c12] text-xl">★</span>
                   ))}
                 </div>
-                <p className="text-gray-600 leading-relaxed mb-6 italic">
-                  &ldquo;{t.text}&rdquo;
-                </p>
+                <p className="text-gray-600 leading-relaxed mb-6 italic">&ldquo;{t.text}&rdquo;</p>
                 <div className="border-t pt-4">
                   <p className="font-bold text-[#1a1a2e]">{t.name}</p>
                   <p className="text-sm text-gray-500">{t.role}</p>
@@ -293,13 +269,13 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── CITATION ALEX ────────────────────────────────────────────── */}
+      {/* ── CITATION ─────────────────────────────────────────────────── */}
       <section className="py-16 bg-[#f8f9fa]">
         <div className="max-w-3xl mx-auto px-4 text-center">
           <p className="text-3xl md:text-4xl font-black text-[#1a1a2e] leading-tight">
             &ldquo;Il n&apos;y a pas de mauvaise idée.
             <br />
-            <span className="text-[#c0392b]">Il n&apos;y a que de mauvais vendeurs.</span>&rdquo;
+            <span className="text-[#c0392b]">Il n&apos;y a que de mauvais vendeurs.&rdquo;</span>
           </p>
           <p className="text-gray-500 mt-4 font-medium">— Alexandre Gagliano</p>
         </div>
@@ -315,16 +291,10 @@ export default function HomePage() {
             Choisissez votre livre. Appliquez la méthode. Mesurez les résultats.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <Link
-              href="/livre"
-              className="bg-white text-[#c0392b] font-black px-8 py-4 rounded-full hover:bg-gray-100 transition-all text-lg shadow-lg"
-            >
+            <Link href="/livre" className="bg-white text-[#c0392b] font-black px-8 py-4 rounded-full hover:bg-gray-100 transition-all text-lg shadow-lg">
               Le Livre Original
             </Link>
-            <Link
-              href="/fitness"
-              className="bg-[#1a1a2e] text-white font-black px-8 py-4 rounded-full hover:bg-[#2c3e50] transition-all text-lg shadow-lg"
-            >
+            <Link href="/fitness" className="bg-[#1a1a2e] text-white font-black px-8 py-4 rounded-full hover:bg-[#2c3e50] transition-all text-lg shadow-lg">
               Fitness Edition
             </Link>
           </div>
