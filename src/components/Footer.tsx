@@ -26,7 +26,17 @@ export default function Footer() {
           <div>
             <h4 className="text-white font-bold mb-4 text-sm uppercase tracking-widest">Livres</h4>
             <ul className="space-y-2 text-sm">
-              <li><Link href="/livre" className="hover:text-white transition-colors">L&apos;As de la Vente</Link></li>
+              <li><Link href="/livre" className="hover:text-white transition-colors">L&apos;As de la Vente et du Marketing</Link></li>
+              <li>
+                <a
+                  href="https://www.amazon.com.be/LAS-vente-marketing-Comment-maitriser/dp/B0FLWYH5DL"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#f39c12] hover:text-[#e67e22] transition-colors font-semibold"
+                >
+                  🛒 Commander sur Amazon
+                </a>
+              </li>
               <li><Link href="/fitness" className="hover:text-white transition-colors">Fitness Edition</Link></li>
             </ul>
           </div>

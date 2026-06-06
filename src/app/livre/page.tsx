@@ -67,7 +67,7 @@ export default function LivrePage() {
                 </div>
                 <div className="mt-4 flex justify-center">
                   <Link
-                    href="https://www.amazon.fr"
+                    href="https://www.amazon.com.be/LAS-vente-marketing-Comment-maitriser/dp/B0FLWYH5DL"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 bg-[#f39c12] text-[#1a1a2e] font-black px-5 py-2.5 rounded-full text-sm hover:bg-[#e67e22] transition-colors shadow-lg"

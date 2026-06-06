@@ -78,8 +78,8 @@ export default function HomePage() {
                     priority
                   />
                 </div>
-                <p className="text-white/60 text-xs text-center mt-2 group-hover:text-white transition-colors">
-                  Version Originale — dispo sur Amazon
+                <p className="text-[#f39c12] text-xs text-center mt-2 font-bold">
+                  🛒 Dispo sur Amazon
                 </p>
               </Link>
 
